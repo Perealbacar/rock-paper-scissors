@@ -11,8 +11,11 @@ let computerChoice;
 let humanScore = 0;
 let computerScore = 0;
 
+let round = 0;
+
 function playRound(humanChoice, computerChoice) {
 
+    console.log("Round " + ++round);
    
     if(humanChoice == computerChoice) {
         console.log("Both used " + humanChoice + ". It's a draw!");
@@ -25,6 +28,8 @@ function playRound(humanChoice, computerChoice) {
         console.log(humanChoice + " beats " + computerChoice + ". You win!"); 
         console.log("Your Score = " + ++humanScore + " Computer Score = " + computerScore);
     }
+    
+    
 }
 
 function getComputerChoice() {
@@ -50,8 +55,24 @@ function getHumanChoice(){
     return prompt("What is your choice?").toLowerCase();    
 }
 
-humanChoice = getHumanChoice();
+function playGame(){
 
-computerChoice = getComputerChoice();
+    while(humanScore < 5 && computerScore < 5) {
 
-playRound(humanChoice, computerChoice);
+        humanChoice = getHumanChoice();
+        computerChoice = getComputerChoice();
+        playRound(humanChoice, computerChoice);
+    }
+
+    if(humanScore == 5){
+        console.log("You got 5 points. You win the game!")
+    }
+
+    else if(computerScore == 5){
+        console.log("Computer got 5 points. You lose the game!")
+    }    
+
+}
+
+playGame();
+
