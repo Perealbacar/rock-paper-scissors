@@ -13,7 +13,9 @@ let computerScore = 0;
 
 let round = 0;
 
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+
+    computerChoice = getComputerChoice();
 
     console.log("Round " + ++round);
    
@@ -28,6 +30,8 @@ function playRound(humanChoice, computerChoice) {
         console.log(humanChoice + " beats " + computerChoice + ". You win!"); 
         console.log("Your Score = " + ++humanScore + " Computer Score = " + computerScore);
     }
+
+    playGame();
     
     
 }
@@ -51,18 +55,22 @@ function getComputerChoice() {
 
 }
 
-function getHumanChoice(){
-    return prompt("What is your choice?").toLowerCase();    
+function getHumanChoice(choice){
+    humanChoice = choice;
+    playRound(humanChoice);
+
+    //return prompt("What is your choice?").toLowerCase();    
 }
 
 function playGame(){
-
+/*
     while(humanScore < 5 && computerScore < 5) {
 
-        humanChoice = getHumanChoice();
+        humanChoice;
         computerChoice = getComputerChoice();
-        playRound(humanChoice, computerChoice);
+        //playRound(humanChoice, computerChoice);
     }
+*/
 
     if(humanScore == 5){
         console.log("You got 5 points. You win the game!")
@@ -70,9 +78,19 @@ function playGame(){
 
     else if(computerScore == 5){
         console.log("Computer got 5 points. You lose the game!")
-    }    
-
+    }
 }
 
-playGame();
+const rockBtn = document.querySelector("#rockBtn");
+
+
+rockBtn.addEventListener("click", () => {
+    humanChoice = getHumanChoice("Rock");
+});
+
+const paperBtn = document.querySelector("paperBtn");
+const scissorsBtn = document.querySelector("scissorsBtn");
+
+
+//playGame();
 
